@@ -49,9 +49,12 @@ function fcfsScheduling(processes) {
   
       const runningTime = currentTime;
       // หา Running Counter ของแต่ละprocess
+        //# เช็คว่า process ไหน ไม่เคยทำงานมาก่อน ให้กำหนดรอบในการทำงานแค่  1 รอบ   
       if (!runningCounter[processName]) {
         runningCounter[processName] = 1;
-      } else {
+
+
+      } else { // ถ้า process   เคยทำงานมาก่อนแล้ว  ให้เพิ่มจำนวนครั้งของprocess นั้นๆ
         runningCounter[processName] += 1;
       }
 

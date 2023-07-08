@@ -44,7 +44,7 @@ def round_robin_scheduling(processes, quantum_time):
         
         #หา Running Counter ของแต่ละprocess
 
-            # เช็คว่า process ไหน ไม่เคยทำงานมาก่อน ให้กำหนดรอบในการทำงาน = 1   
+            # เช็คว่า process ไหน ไม่เคยทำงานมาก่อน ให้กำหนดรอบในการทำงานแค่  1 รอบ   
         if process_name not in running_counter:
             running_counter[process_name] = 1
         else:
