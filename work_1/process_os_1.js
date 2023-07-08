@@ -39,7 +39,7 @@ function fcfsScheduling(processes) {
     const runningCounter = {};
   
     while (processes.length > 0) {
-      // ป๊อป process แรกออกมาจาก queue
+      // pop process แรกออกมาจาก queue
       const [processName, instructionTime] = processes.shift();
   
       if (!responseTimes[processName]) {
