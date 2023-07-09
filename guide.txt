@@ -18,17 +18,37 @@
         
         
         ฟังก์ชั่น fcfsScheduling(processes)
-            - ฟังก์ชั่น fcfsScheduling รับพารามิเตอร์ processes ซึ่งเป็นอาร์เรย์ของข้อมูลการประมวลผลของprocess
-            - ฟังก์ชั่นนี้ใช้เพื่อจัดตารางการทำงานของprocessโดยใช้วิธี First-Come-First-Serve (FCFS) Scheduling
-            - ภายในฟังก์ชั่นจะมีตัวแปร currentTime เพื่อเก็บเวลาปัจจุบัน โดยเริ่มต้นที่ 0
+            - ฟังก์ชันนี้รับพารามิเตอร์ processes ที่เป็นข้อมูลของ process ที่ต้องการทำงานแบบ FCFS (First Come First Serve) scheduling           
+            - ภายในฟังก์ชั่นจะมีตัวแปร currentTime เพื่อเก็บเวลา ณ ปัจจุบัน โดยเริ่มต้นที่ 0
             - จะมีตัวแปร responseTimes เพื่อเก็บ response time ของแต่ละprocess
             - จะมีตัวแปร output เพื่อเก็บผลลัพธ์ที่จะเขียนลงในไฟล์
             - และวนลูปผ่านprocessทั้งหมดในอาร์เรย์ processes:
-                - จะดึงชื่อ processและเวลาการประมวลผลจากคู่อันดับข้อมูล
-                - response ของprocessจะถูกตั้งค่าเป็นเวลาปัจจุบัน (currentTime)
+                - จะดึงชื่อ processและเวลาการประมวลผลจาก tuple array
+                - response ของprocessจะถูกตั้งค่าเป็นเวลา ณ ปัจจุบัน (currentTime)
                 - นับเวลาที่ใช้ในการประมวลผลprocessโดยเพิ่มเวลาการประมวลผลใน currentTime
                 - นำผลลัพธ์ที่ได้เพิ่มลงในอาร์เรย์ output โดยใช้รูปแบบที่กำหนด
-            - เมื่อการวนลูปเสร็จสิ้น โค้ดจะพยายามเขียนผลลัพธ์ลงในไฟล์ schedule_fcfs.txt 
+            - เมื่อการวนลูปเสร็จแล้ว  โปรแกรมจะเขียน output ลงในไฟล์ output_js/schedule_fcfs.txt 
             โดยใช้ fs.writeFileSync และพิมพ์ข้อความ "schedule_fcfs.txt was created!" 
             หรือแสดงข้อผิดพลาดในกรณีที่เกิดข้อผิดพลาดในการเขียนไฟล์    
+
+        roundRobinScheduling(processes, 10):
+
+            - ฟังก์ชันนี้รับพารามิเตอร์ processes ที่เป็นข้อมูลของ process ที่ต้องการทำงานแบบ Round Robin scheduling 
+             และ quantumTime เป็นค่าเวลาในการประมวลผลในแต่ละรอบ (quantum time)
+            - ภายในฟังก์ชั่นจะมีตัวแปร currentTime เพื่อเก็บเวลาปัจจุบันที่เริ่มต้นที่ 0
+            - มีการสร้างตัวแปร responseTimes เพื่อเก็บเวลา response ของแต่ละ process 
+            - มีการตัวแปร output เพื่อเก็บ outputที่จะเขียนลงในไฟล์
+            - วนลูปจนกว่าจะไม่มี process ในอาร์เรย์ processes:
+                - pop ข้อมูล process แรกออกจากคิวโดยใช้ ฟังก์ชัน shift()
+                - ทำการเช็คเงื่อนไขว่า response time  ของ process นั้นถูกกำหนดหรือยัง ถ้าไม่ได้กำหนดให้กำหนดให้เป็นเวลา ณ ปัจจุบัน (currentTime)
+                  นับเวลาที่ใช้ในการประมวลผลของ process โดยเพิ่มเวลาประมวลผลใน currentTime
+                - เพิ่มจำนวนครั้งที่ process ทำงานลงใน runningCounter
+                - หากเวลาประมวลผลของ process มากกว่า quantumTime:
+                    นับเวลาที่ใช้ในการประมวลผลเฉพาะส่วนที่มีระยะเวลาเท่ากับ quantumTime
+                - เพิ่มข้อมูลลงในอาร์เรย์ output โดยใช้รูปแบบที่กำหนด
+                - push process กลับเข้าคิวโดยตัดระยะเวลาที่ประมวลผลออกจาก instructionTime
+            หากเวลาประมวลผลของ process น้อยกว่าหรือเท่ากับ quantumTime:
+            นับเวลาที่ใช้ในการประมวลผลทั้งหมดของ process 
+            เพิ่มข้อมูลลงในอาร์เรย์ output โดยใช้รูปแบบที่กำหนด
+            เมื่อการวนลูปเสร็จสิ้น โปรแกรมจะเขียน output ลงในไฟล์ schedule_rr.txt โดยใช้ fs.writeFileSync และพิมพ์ข้อความ "schedule_rr.txt was created!" หรือแสดงข้อผิดพลาดในกรณีที่เกิดข้อผิดพลาดในการเขียนไฟล์
 
