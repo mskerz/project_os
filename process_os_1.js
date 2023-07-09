@@ -24,8 +24,8 @@ function fcfsScheduling(processes) {
     
 
     try {//save ไฟล์
-        fs.writeFileSync('output_js/schedule_fcfs.txt', output.join(''));
-        console.log('---schedule_fcfs.txt was created!---');
+        fs.writeFileSync('fcfs_schedule.txt', output.join(''));
+        console.log('---fcfs_schedule.txt was created!---');
       } catch (error) {
         console.error('Error writing file:', error);
       }
@@ -85,8 +85,8 @@ function fcfsScheduling(processes) {
     
     // เขียนผลลัพธ์ลงในไฟล์ rr_schedule.txt 
     try {
-        fs.writeFileSync('output_js/schedule_rr.txt', output.join(''));
-        console.log('---schedule_rr.txt was created!---');
+        fs.writeFileSync('rr_schedule.txt', output.join(''));
+        console.log('---rr_schedule.txt was created!---');
       } catch (error) {
         console.error('Error writing file:', error);
       }
