@@ -107,7 +107,7 @@ function fcfsScheduling(processes) {
       
       const trimmedLine = line.trim();
       if (trimmedLine !== '') {
-        const [processName, instructionTime] = trimmedLine.split(' ');
+        const [processName, instructionTime] = trimmedLine.split(/\s+/);  //แยกวรรคโดยไม่สนใจว่าจะแยกกี่วรรค
         processes.push([processName, parseInt(instructionTime)]);
       }
     });
@@ -116,7 +116,7 @@ function fcfsScheduling(processes) {
   }
   
   // สร้างตัวเเปร มารับ process จาก ฟังก์ชันอ่านไฟล์
-  const processes = readProcessesFromFile('process.txt');
+  const processes = readProcessesFromFile('processes.txt');
  // เรียกใช้ ฟังก์ชัน fcfs
   fcfsScheduling(processes);
 
