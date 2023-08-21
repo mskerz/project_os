@@ -48,7 +48,8 @@ void main() {
       throw Exception('input length should be 32 bits.');
     }
 
-    // example input '00000000100000000010100000000101';
+    // example input '00000010100000000010100000000101'  ;
+
     //แบ่งข้อมูลจาก input ออกเป็น 3 ส่วน ด้วยการใช้ substring ในการแยก
     // 10 bitแรก ไปเก็บในตัวแปร pt1
     String pt1 = input.substring(0, 10);
@@ -74,6 +75,7 @@ void main() {
     print('Physical Address     : $physicalAddress');
     print(
         '                     : ( ${pageTable1[index1]}:${pageTable2[index2]}:$offset) ');
+    print(' index1');
   } catch (e) {
     //แสดงข้อผิดพลาดที่ถูกโยนมา
     print(e.toString());
