@@ -8,7 +8,7 @@ void main() {
   List<String> pageTable1 = [];
   List<String> pageTable2 = [];
 
-  // สร้างตัวแปร boolean ไว้ใช้ในการเช็คข้อมูลของ Table_1 และ Table_2 ต่อไปนี้
+  // สร้างตัวแปร boolean ไว้ใช้ในการเช็คข้อมูลของ Table_1 และ Table_2 ต
   bool isTable1 = false;
   lines.forEach((line) {
     //วนรูปตามจำนวน lines
@@ -21,13 +21,13 @@ void main() {
     } else {
       //ถ้าบรรทัดไม่ได้ขึ้นต้นด้วย Table_1 และ Table_2
       if (isTable1) {
-        //เช็คว่า isTable1 เป็น true หรือไม่
-        //ถ้า isTable1 เป็น true
-        //หมายความว่า ถ้ากำลังอ่านข้อมูล จากTable_1  ให้เพิ่มข้อมูลline เข้าไปใน pageTable1
+        //เช็คว่าเงื่อนไข isTable1 เป็นจริง?
+        //ถ้า isTable1 เป็นจริง
+        //หมายความว่า กำลังอ่านข้อมูล จากTable_1 อยู่ ให้เพิ่มข้อมูลline เข้าไปใน pageTable1
         pageTable1.add(line);
       } else {
         //ถ้าไม่เข้าเงื่อนไขด้านบน แสดงว่า   isTable1 เป็น false
-        //เพิ่มข้อมูล line ลงใน pageTable2
+        //เก็บข้อมูล line ที่อยู่ในtable2 ลงใน pageTable2
         pageTable2.add(line);
       }
     }
@@ -36,11 +36,11 @@ void main() {
   // Calculate physical address
 
   //รับ input virtual address  เข้ามา ในตัวแปร input
-  stdout.write('Enter a virtual address: ');
+  stdout.write('Enter 32 bits  virtual address : ');
   String? input = stdin.readLineSync();
 
   try {
-    //   ดักจับข้อผิดพลาดที่เกิดขึ้น และให้โยนข้อผิดพลาดที่ดักจับไปแสดงผลที่หน้าจอ
+    //   ดักจับข้อผิดพลาด
     if (input == null) {
       throw Exception('input is must not be null');
     }
@@ -48,7 +48,7 @@ void main() {
       throw Exception('input length should be 32 bits.');
     }
 
-    // example input '00000010100000000010100000000101'  ;
+    // example input '00100010100000000010100000000101'  ;
 
     //แบ่งข้อมูลจาก input ออกเป็น 3 ส่วน ด้วยการใช้ substring ในการแยก
     // 10 bitแรก ไปเก็บในตัวแปร pt1
@@ -66,16 +66,15 @@ void main() {
       throw Exception('index out of bounds. !');
     }
 
-    //รวม pageTable1 , pageTable2 ,offset เข้าไว้ด้วยกัน (นำมาต่อstringกัน) และเก็บไว้ในตัวแปร physical address
+    //รวม pageTable1 , pageTable2 ,offset ให้เป็น physical address
     String physicalAddress = pageTable1[index1] + pageTable2[index2] + offset;
 
-    //แสดงผล ouput ที่เป็น physicalAddress
+    //แสดงผล ouput  
     print(
         'Page Table Level 1 =  $pt1 : $index1   \nPage Table Level 2 =  $pt2 : $index2  \n     Offset  =  $offset');
     print('Physical Address     : $physicalAddress');
     print(
         '                     : ( ${pageTable1[index1]}:${pageTable2[index2]}:$offset) ');
-    print(' index1');
   } catch (e) {
     //แสดงข้อผิดพลาดที่ถูกโยนมา
     print(e.toString());
